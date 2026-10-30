@@ -1,59 +1,35 @@
-<div align="right">
-  Language:
-  🇺🇸
-  <a title="Chinese" href="./README.zh-CN.md">🇨🇳</a>
-</div>
+# mtkclient-for-termux (KernelMasterX Edition)
 
-# MTKClient
-![Logo](mtkclient/gui/images/logo_256.png)
+> Mobile-optimized, root-free MediaTek flashing and research utility designed to run natively inside Termux.
 
-Just some mtk tool for exploitation, reading/writing flash and doing crazy stuff. 
-For windows, you need to install the stock mtk port and the usbdk driver (see instructions below).
-For linux, a patched kernel is only needed when using old kamakiri (see Setup folder) (except for read/write flash).
+---
 
-Once the mtk script is running, boot into brom mode by powering off device, press and hold either
-vol up + power or vol down + power and connect the phone. Once detected by the tool,
-release the buttons.
+## 🚀 About
+**mtkclient-for-termux** is a specialized, mobile-optimized adaptation of the popular `mtkclient` tool, built to run directly on Android devices via Termux. It enables low-level partition management, backups, and recovery operations on MediaTek-based devices through BROM mode—completely **root-free**, leveraging `termux-usb` and `libusb` APIs.
 
-## MT6781, MT6789, MT6855, MT6886, MT6895, MT6983, MT8985
-- These chipsets use a new protocol called V6 and the bootrom is patched. 
-You need to use the --loader option and a proper loader from the Loaders/V6 directory. 
-Bootrom won't work, you need to use preloader mode (no hw buttons pressed, just connect). 
-On some devices, preloader is deactivated, but you can reactivate it by running "adb reboot edl".
+## ✨ Features
+* **Rootless Execution:** Direct USB communication via the `termux-usb` bridge without requiring superuser permissions.
+* **Mobile Optimized:** Dependencies and configurations streamlined for seamless compilation and execution inside the Termux environment.
+* **Low-Level Access:** Full control over critical partitions including Preloader, LK, Boot, Recovery, and VBMeta.
+* **PC-Free Recovery:** Emergency intervention and rescue operations directly from a handheld device when a desktop computer is unavailable.
 
-## Credits
-- kamakiri [xyzz]
-- linecode exploit [chimera]
-- heapbait exploit [chimera], creds to [R0rt1z2],[Shomy]
-- Chaosmaster
-- Geert-Jan Kreileman (GUI, design & fixes)
-- All contributors
+## 🛠️ Requirements
+* **Termux** (Installed from F-Droid or modern sources; Google Play Store versions are outdated and not recommended).
+* `termux-api` and core development tools.
+* USB OTG cable and a target MediaTek device.
 
-### Installation
+## 📥 Installation
 
-[See linux/macos installation hints](README-INSTALL.md)
+Clone the repository directly into your Termux environment and get ready to run:
 
-[See windows installation hints](README-WINDOWS.md)
+```bash
+# Clone the repository
+git clone [https://github.com/KernelMasterX/mtkclient-for-termux.git](https://github.com/KernelMasterX/mtkclient-for-termux.git)
+cd mtkclient-for-termux
 
-[See automated Windows installer](https://github.com/codefl0w/mtkclient-windows-installer)
+# Install required Python dependencies
+pip install -r requirements.txt
 
-### Usage
-[See usage instructions](README-USAGE.md)
-
-### Use Re LiveDVD (everything ready to go, based on Ubuntu):
-User: user, Password:user (based on Ubuntu 22.04 LTS)
-
-[Live DVD V6](https://www.androidfilehost.com/?fid=1109791587270922802)
-
-### I have issues ....... please send logs and full console details !
-
-- Run the mtk tool with --debugmode. Log will be written to log.txt (hopefully)
-
-## Rules / Infos
-
-### Chip details / configs
-- Go to config/brom_config.py
-- Unknown usb vid/pids for autodetection go to config/usb_ids.py
-
-## Other Stuff 
-[Learning resources](learning_resources.md)
+⚠️ Disclaimer
+​This tool interacts directly with low-level system components and memory addresses. Incorrect usage may result in a hard-brick state. Use at your own risk; all responsibility lies with the user executing the tools.
+​Developed by KernelMasterX
